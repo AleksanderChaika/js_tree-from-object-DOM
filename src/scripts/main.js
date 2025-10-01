@@ -21,18 +21,22 @@ const food = {
 const tree = document.querySelector('#tree');
 
 function createTree(element, data) {
-  if (!Object.keys(data).length) {
-    return;
+  if (!element || typeof element.append !== 'function') {
+    throw new Error('Target element is invalid');
   }
 
   const ul = document.createElement('ul');
 
-  for (const key in data) {
+  for (const key of Object.keys(data)) {
     const li = document.createElement('li');
 
     li.textContent = key;
 
-    if (Object.keys(data[key]).length) {
+    if (
+      data[key] &&
+      typeof data[key] === 'object' &&
+      Object.keys(data[key]).length
+    ) {
       createTree(li, data[key]);
     }
 
