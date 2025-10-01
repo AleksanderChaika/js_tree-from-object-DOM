@@ -25,6 +25,7 @@ function createTree(element, data) {
 
   if (!data || typeof data !== 'object') {
     element.append(document.createElement('ul'));
+
     return;
   }
 
@@ -32,6 +33,7 @@ function createTree(element, data) {
 
   for (const key of Object.keys(data)) {
     const li = document.createElement('li');
+
     li.textContent = key;
 
     if (
@@ -48,9 +50,9 @@ function createTree(element, data) {
   element.append(ul);
 }
 
-// Демонстрация только если есть document и контейнер
 if (typeof document !== 'undefined') {
   const root = document.querySelector('#tree');
+
   if (root) {
     createTree(root, food);
   }
